@@ -25,8 +25,12 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <Navigation />
-          {children}
+          <div className="flex">
+            <Navigation />
+            <main className="flex-1 main-content">
+              {children}
+            </main>
+          </div>
         </ThemeProvider>
       </body>
     </html>

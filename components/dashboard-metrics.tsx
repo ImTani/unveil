@@ -17,7 +17,7 @@ export function DashboardMetrics() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold mb-4">Media Trends</h2>
-        <p className="text-muted-foreground">
+        <p className="text-[hsl(var(--muted))]">
           Track accuracy and bias trends across major news sources
         </p>
       </div>
@@ -30,41 +30,56 @@ export function DashboardMetrics() {
         <Card className="glass-panel p-6">
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              <LineChart data={data}>
+                <CartesianGrid 
+                  strokeDasharray="3 3" 
+                  stroke="rgba(255,255,255,0.1)" 
+                  vertical={false}
+                />
                 <XAxis 
                   dataKey="name" 
-                  stroke="rgba(255,255,255,0.5)"
-                  tick={{ fill: "rgba(255,255,255,0.5)" }}
+                  stroke="hsl(var(--muted))"
+                  tick={{ fill: "hsl(var(--muted))" }}
                   axisLine={{ stroke: "rgba(255,255,255,0.1)" }}
+                  tickLine={false}
+                  padding={{ left: 10, right: 10 }}
                 />
                 <YAxis 
-                  stroke="rgba(255,255,255,0.5)"
-                  tick={{ fill: "rgba(255,255,255,0.5)" }}
+                  stroke="hsl(var(--muted))"
+                  tick={{ fill: "hsl(var(--muted))" }}
                   axisLine={{ stroke: "rgba(255,255,255,0.1)" }}
+                  tickLine={false}
+                  width={40}
+                  domain={[0, 100]}
+                  tickCount={6}
                 />
                 <Tooltip 
                   contentStyle={{
-                    backgroundColor: "rgba(26,43,76,0.9)",
+                    backgroundColor: "hsl(var(--nav-bg))",
                     border: "1px solid rgba(255,255,255,0.1)",
                     borderRadius: "8px",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
                   }}
+                  labelStyle={{ color: "hsl(var(--muted))" }}
+                  cursor={{ stroke: "rgba(255,255,255,0.1)", strokeWidth: 1 }}
                 />
                 <Line 
                   type="monotone" 
                   dataKey="accuracy" 
-                  stroke="#006D77" 
+                  stroke="hsl(var(--data-1))" 
                   strokeWidth={2}
-                  dot={{ fill: "#006D77" }}
-                  activeDot={{ r: 8 }}
+                  dot={{ fill: "hsl(var(--data-1))", r: 4 }}
+                  activeDot={{ r: 6, strokeWidth: 2 }}
+                  animationDuration={1000}
                 />
                 <Line 
                   type="monotone" 
                   dataKey="bias" 
-                  stroke="#FFA500" 
+                  stroke="hsl(var(--data-2))" 
                   strokeWidth={2}
-                  dot={{ fill: "#FFA500" }}
-                  activeDot={{ r: 8 }}
+                  dot={{ fill: "hsl(var(--data-2))", r: 4 }}
+                  activeDot={{ r: 6, strokeWidth: 2 }}
+                  animationDuration={1000}
                 />
               </LineChart>
             </ResponsiveContainer>

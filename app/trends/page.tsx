@@ -29,7 +29,7 @@ export default function TrendsPage() {
                   key={timeframe}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-4 py-2 rounded-lg glass-panel hover:bg-white/10"
+                  className="px-4 py-2 rounded-lg glass-panel hover:bg-white/10 relative z-10"
                 >
                   {timeframe}
                 </motion.button>
@@ -42,41 +42,55 @@ export default function TrendsPage() {
               <h2 className="text-xl font-semibold mb-4">Accuracy vs. Bias Trends</h2>
               <div className="h-[400px]">
                 <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={trendData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                  <LineChart data={trendData}>
+                    <CartesianGrid 
+                      strokeDasharray="3 3" 
+                      stroke="rgba(255,255,255,0.1)" 
+                      vertical={false}
+                    />
                     <XAxis 
                       dataKey="date" 
                       stroke="rgba(255,255,255,0.5)"
                       tick={{ fill: "rgba(255,255,255,0.5)" }}
                       axisLine={{ stroke: "rgba(255,255,255,0.1)" }}
+                      tickLine={false}
+                      padding={{ left: 10, right: 10 }}
                     />
                     <YAxis 
                       stroke="rgba(255,255,255,0.5)"
                       tick={{ fill: "rgba(255,255,255,0.5)" }}
                       axisLine={{ stroke: "rgba(255,255,255,0.1)" }}
+                      tickLine={false}
+                      width={40}
+                      domain={[0, 100]}
+                      tickCount={6}
                     />
                     <Tooltip 
                       contentStyle={{
                         backgroundColor: "rgba(26,43,76,0.9)",
                         border: "1px solid rgba(255,255,255,0.1)",
                         borderRadius: "8px",
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
                       }}
+                      cursor={{ stroke: "rgba(255,255,255,0.1)", strokeWidth: 1 }}
                     />
                     <Line 
                       type="monotone" 
                       dataKey="accuracy" 
-                      stroke="#006D77" 
+                      stroke="hsl(var(--data-1))" 
                       strokeWidth={2}
-                      dot={{ fill: "#006D77" }}
-                      activeDot={{ r: 8 }}
+                      dot={{ fill: "hsl(var(--data-1))", r: 4 }}
+                      activeDot={{ r: 6, strokeWidth: 2 }}
+                      animationDuration={1000}
                     />
                     <Line 
                       type="monotone" 
                       dataKey="bias" 
-                      stroke="#FFA500" 
+                      stroke="hsl(var(--data-2))" 
                       strokeWidth={2}
-                      dot={{ fill: "#FFA500" }}
-                      activeDot={{ r: 8 }}
+                      dot={{ fill: "hsl(var(--data-2))", r: 4 }}
+                      activeDot={{ r: 6, strokeWidth: 2 }}
+                      animationDuration={1000}
                     />
                   </LineChart>
                 </ResponsiveContainer>
@@ -91,17 +105,20 @@ export default function TrendsPage() {
                     {
                       title: "Improving Accuracy",
                       description: "Overall accuracy scores show an upward trend across major outlets",
-                      metric: "+15%"
+                      metric: "+15%",
+                      color: "emerald"
                     },
                     {
                       title: "Reduced Bias",
                       description: "Average bias ratings decreased significantly in recent months",
-                      metric: "-8%"
+                      metric: "-8%",
+                      color: "amber"
                     },
                     {
                       title: "Source Diversity",
                       description: "More diverse sources are being included in coverage",
-                      metric: "+12"
+                      metric: "+12",
+                      color: "blue"
                     }
                   ].map((insight, index) => (
                     <motion.div
@@ -109,13 +126,13 @@ export default function TrendsPage() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      className="flex justify-between items-center p-4 rounded-lg bg-white/5"
+                      className="flex justify-between items-center p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors duration-200"
                     >
                       <div>
                         <h3 className="font-medium">{insight.title}</h3>
                         <p className="text-sm text-white/70">{insight.description}</p>
                       </div>
-                      <span className="text-xl font-bold text-important">{insight.metric}</span>
+                      <span className={`text-xl font-bold text-${insight.color}-400`}>{insight.metric}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -135,9 +152,9 @@ export default function TrendsPage() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      className="flex items-center space-x-2 p-2 rounded-lg hover:bg-white/5"
+                      className="flex items-center space-x-2 p-2 rounded-lg hover:bg-white/10 transition-colors duration-200"
                     >
-                      <div className="w-2 h-2 rounded-full bg-viral" />
+                      <div className="w-2 h-2 rounded-full bg-[hsl(var(--data-1))]" />
                       <span>{pattern}</span>
                     </motion.div>
                   ))}

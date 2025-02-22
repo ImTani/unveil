@@ -5,6 +5,31 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Mail, Github, Twitter } from "lucide-react"
 
+const teamMembers = [
+  {
+    name: "Tanishk Narula",
+    role: "Lead Developer",
+    bio: "Proficient in GenAI and full-stack development",
+    image: "https://api.dicebear.com/7.x/personas/svg?seed=sarah",
+    social: {
+      twitter: "https://twitter.com/infinitani",
+      github: "https://github.com/imtani",
+      email: "tanidev69@gmail.com"
+    }
+  },
+  {
+    name: "Nishkarsh Bains",
+    role: "ML Engineer",
+    bio: "Expert in machine learning and natural language processing",
+    image: "https://api.dicebear.com/7.x/personas/svg?seed=marcus",
+    social: {
+      twitter: "https://twitter.com/",
+      github: "https://github.com/nishkarsh925",
+      email: "nishcodingzone@gmail.com"
+    }
+  },
+];
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen pt-16">
@@ -71,7 +96,7 @@ export default function AboutPage() {
                     transition={{ delay: index * 0.1 }}
                     className="flex items-center space-x-3"
                   >
-                    <div className="w-2 h-2 rounded-full bg-viral" />
+                    <div className="w-2 h-2 rounded-full bg-[hsl(var(--accent-primary))]" />
                     <span>{item}</span>
                   </motion.div>
                 ))}
@@ -97,16 +122,50 @@ export default function AboutPage() {
             </Card>
           </section>
 
-          <section className="text-center max-w-2xl mx-auto">
-            <Card className="glass-panel p-8">
-              <h2 className="text-2xl font-bold mb-4">Join Our Mission</h2>
-              <p className="text-white/70 mb-6">
-                Help us build a more informed and critical media landscape
-              </p>
-              <Button size="lg" className="bg-gradient-to-r from-viral to-important">
-                Get Started
-              </Button>
-            </Card>
+          <section>
+            <h2 className="text-2xl font-bold mb-8 text-center">Our Team</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {teamMembers.map((member, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Card className="glass-panel overflow-hidden">
+                    <div className="aspect-square w-full bg-white/5">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
+                      <p className="text-[hsl(var(--accent-primary))] mb-2">{member.role}</p>
+                      <p className="text-white/70 mb-4">{member.bio}</p>
+                      <div className="flex space-x-3">
+                        <Button variant="ghost" size="icon" asChild>
+                          <a href={member.social.twitter} target="_blank" rel="noopener noreferrer">
+                            <Twitter className="h-4 w-4" />
+                          </a>
+                        </Button>
+                        <Button variant="ghost" size="icon" asChild>
+                          <a href={member.social.github} target="_blank" rel="noopener noreferrer">
+                            <Github className="h-4 w-4" />
+                          </a>
+                        </Button>
+                        <Button variant="ghost" size="icon" asChild>
+                          <a href={`mailto:${member.social.email}`}>
+                            <Mail className="h-4 w-4" />
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </section>
         </motion.div>
       </div>

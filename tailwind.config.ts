@@ -50,14 +50,12 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        viral: {
-          DEFAULT: "hsl(var(--viral))",
-          foreground: "hsl(var(--viral-foreground))",
-        },
-        important: {
-          DEFAULT: "hsl(var(--important))",
-          foreground: "hsl(var(--important-foreground))",
-        },
+      },
+      backgroundColor: {
+        'white/5': 'rgba(255, 255, 255, 0.05)',
+        'white/10': 'rgba(255, 255, 255, 0.1)',
+        'white/15': 'rgba(255, 255, 255, 0.15)',
+        'white/20': 'rgba(255, 255, 255, 0.2)',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -77,6 +75,10 @@ const config: Config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      scale: {
+        '98': '0.98',
+        '102': '1.02',
       },
     },
   },
