@@ -10,7 +10,7 @@ const teamMembers = [
     name: "Tanishk Narula",
     role: "Lead Developer",
     bio: "Proficient in GenAI and full-stack development",
-    image: "https://api.dicebear.com/7.x/personas/svg?seed=sarah",
+    image: "https://avataaars.io/?avatarStyle=Transparent&topType=LongHairBob&accessoriesType=Prescription02&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=Hoodie&clotheColor=Gray02&eyeType=Default&eyebrowType=UpDown&mouthType=Serious&skinColor=Light",
     social: {
       twitter: "https://twitter.com/infinitani",
       github: "https://github.com/imtani",
@@ -21,9 +21,8 @@ const teamMembers = [
     name: "Nishkarsh Bains",
     role: "ML Engineer",
     bio: "Expert in machine learning and natural language processing",
-    image: "https://api.dicebear.com/7.x/personas/svg?seed=marcus",
+    image: "https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortWaved&accessoriesType=Prescription01&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light",
     social: {
-      twitter: "https://twitter.com/",
       github: "https://github.com/nishkarsh925",
       email: "nishcodingzone@gmail.com"
     }
